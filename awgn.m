@@ -1,8 +1,8 @@
 function noisy = awgn(signal, V, EBN0, nbits)
     global FS;
 
-    E_b = trapz(abs(signal).^2) / (FS*nbits*2) * mean(abs(V)).^2;
-    N_0 = E_b / 10^(EBN0/10);
+    E_b = trapz(abs(signal).^2) / (FS*nbits*2);
+    N_0 = E_b / 10^(EBN0/10)* mean(abs(V)).^2;
 
     NoisePower = 2*N_0*FS;
     noisy = signal + sqrt(NoisePower/2)...
